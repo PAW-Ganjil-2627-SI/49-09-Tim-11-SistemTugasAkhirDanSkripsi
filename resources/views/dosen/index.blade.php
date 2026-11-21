@@ -5,7 +5,7 @@
 @section('content')
     <h2>Data Dosen Pembimbing</h2>
 
-    <form action="{{ route('dosen.store') }}" method="POST">
+    <form action="{{ route('dosen.store') }}" method="POST" class="form-row">
         @csrf
         <input type="text" name="nidn" value="{{ old('nidn') }}" placeholder="NIDN (13 Digit)" maxlength="13" required>
         <input type="text" name="nama" value="{{ old('nama') }}" placeholder="Nama Dosen" required>
@@ -19,38 +19,33 @@
         <button type="submit">Simpan</button>
     </form>
 
-    <table>
-        <tr>
-            <th>No</th>
-            <th>NIDN</th>
-            <th>Nama Dosen</th>
-            <th>Jabatan Fungsional</th>
-            <th>Kepakaran Riset</th>
-            <th>Aksi</th>
-        </tr>
-
-        @forelse ($dosen as $row)
-            <tr>
-                <td>{{ $loop->iteration }}</td>
-                <td>{{ $row->nidn }}</td>
-                <td>{{ $row->nama }}</td>
-                <td>{{ $row->jabatan }}</td>
-                <td>{{ $row->kepakaran }}</td>
-                <td>
-                    <a href="{{ route('dosen.edit', $row) }}"><button type="button">Edit</button></a>
-
-                    <form action="{{ route('dosen.destroy', $row) }}" method="POST" style="display:inline;"
-                          onsubmit="return confirm('Yakin mau hapus data ini?')">
-                        @csrf
-                        @method('DELETE')
-                        <button type="submit">Hapus</button>
-                    </form>
-                </td>
-            </tr>
-        @empty
-            <tr>
-                <td colspan="6">Belum ada data dosen.</td>
-            </tr>
-        @endforelse
-    </table>
+    <div class="table-wrap">
+        <table>
+            <thead>
+                <tr>
+                    <th>No</th><th>NIDN</th><th>Nama Dosen</th><th>Jabatan Fungsional</th><th>Kepakaran Riset</th><th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @forelse ($dosens as $d)
+                    <tr>
+                        <td>{{ $loop->iteration }}</td>
+                        <td>{{ $d->nidn }}</td>
+                        <td><strong>{{ $d->nama }}</strong></td>
+                        <td>{{ $d->jabatan }}</td>
+                        <td><span class="badge">{{ $d->kepakaran }}</span></td>
+                        <td class="aksi">
+                            <a href="{{ route('dosen.edit', $d->id) }}" class="btn btn-sm btn-ghost">Edit</a>
+                            <form action="{{ route('dosen.destroy', $d->id) }}" method="POST" onsubmit="return confirm('Hapus data ini?')">
+                                @csrf @method('DELETE')
+                                <button type="submit" class="btn-sm btn-danger">Hapus</button>
+                            </form>
+                        </td>
+                    </tr>
+                @empty
+                    <tr><td colspan="6" class="empty">Belum ada data dosen pembimbing.</td></tr>
+                @endforelse
+            </tbody>
+        </table>
+    </div>
 @endsection
