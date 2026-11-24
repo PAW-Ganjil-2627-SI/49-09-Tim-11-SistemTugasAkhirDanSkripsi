@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\TopikController;
+use App\Http\Controllers\MahasiswaController;
+use App\Http\Controllers\DosenController;
 use Illuminate\Support\Facades\Route;
 
 Route::redirect('/', '/topik');
@@ -16,6 +18,7 @@ Route::middleware('guest')->group(function () {
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthController::class, 'logout']);
 
-    // Satu baris ini membuat route index, store, edit, update, destroy
     Route::resource('topik', TopikController::class)->except(['create', 'show']);
+    Route::resource('mahasiswa', MahasiswaController::class)->except(['create', 'show']);
+    Route::resource('dosen', DosenController::class)->except(['create', 'show']);
 });

@@ -8,7 +8,6 @@ use Illuminate\Validation\Rule;
 
 class TopikController extends Controller
 {
-    // Pengganti index.php (bagian daftar)
     public function index()
     {
         $topik = Topik::orderByDesc('id')->get();
@@ -17,7 +16,6 @@ class TopikController extends Controller
         return view('topik.index', compact('topik', 'daftarBidang'));
     }
 
-    // Pengganti proses-tambah.php
     public function store(Request $request)
     {
         Topik::create($this->validasi($request));
@@ -26,7 +24,6 @@ class TopikController extends Controller
             ->with('pesan', 'Topik berhasil ditambahkan');
     }
 
-    // Pengganti edit.php
     public function edit(Topik $topik)
     {
         $daftarBidang = Topik::BIDANG;
@@ -34,7 +31,6 @@ class TopikController extends Controller
         return view('topik.edit', compact('topik', 'daftarBidang'));
     }
 
-    // Pengganti proses-edit.php
     public function update(Request $request, Topik $topik)
     {
         $topik->update($this->validasi($request));
@@ -43,7 +39,6 @@ class TopikController extends Controller
             ->with('pesan', 'Topik berhasil diperbarui');
     }
 
-    // Pengganti hapus.php
     public function destroy(Topik $topik)
     {
         $topik->delete();

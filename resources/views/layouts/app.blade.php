@@ -3,20 +3,55 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>@yield('title')</title>
+    <title>@yield('title', 'Sistem Tugas Akhir')</title>
     <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+    <style>
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin-left: 24px;
+        }
+        .nav-link {
+            text-decoration: none;
+            color: var(--muted);
+            font-weight: 600;
+            font-size: 14px;
+            padding: 6px 12px;
+            border-radius: 8px;
+            transition: all .2s;
+        }
+        .nav-link:hover, .nav-link.active {
+            color: var(--primary);
+            background: var(--primary-50);
+        }
+        .nav-left {
+            display: flex;
+            align-items: center;
+        }
+    </style>
 </head>
 <body>
 
     <header class="navbar">
         <div class="navbar-inner">
-            <a href="/topik" class="nav-brand">
-                <span class="logo">TA</span>
-                <div>
-                    <strong>Sistem Tugas Akhir</strong>
-                    <small>Topik &amp; Bidang Minat</small>
-                </div>
-            </a>
+            <div class="nav-left">
+                <a href="{{ route('topik.index') }}" class="nav-brand">
+                    <span class="logo">TA</span>
+                    <div>
+                        <strong>Sistem Tugas Akhir</strong>
+                        <small>Portal Akademik SI</small>
+                    </div>
+                </a>
+
+                @auth
+                <nav class="nav-links">
+                    <a href="{{ route('topik.index') }}" class="nav-link {{ request()->routeIs('topik.*') ? 'active' : '' }}">Topik &amp; Minat</a>
+                    <a href="{{ route('mahasiswa.index') }}" class="nav-link {{ request()->routeIs('mahasiswa.*') ? 'active' : '' }}">Data Mahasiswa</a>
+                    <a href="{{ route('dosen.index') }}" class="nav-link {{ request()->routeIs('dosen.*') ? 'active' : '' }}">Dosen Pembimbing</a>
+                </nav>
+                @endauth
+            </div>
 
             @auth
             <div class="nav-user">
