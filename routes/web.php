@@ -5,6 +5,7 @@ use App\Http\Controllers\TopikController;
 use App\Http\Controllers\MahasiswaController;
 use App\Http\Controllers\DosenController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RuangSidangController;
 
 Route::redirect('/', '/topik');
 
@@ -21,4 +22,6 @@ Route::middleware('auth')->group(function () {
     Route::resource('topik', TopikController::class)->except(['create', 'show']);
     Route::resource('mahasiswa', MahasiswaController::class)->except(['create', 'show']);
     Route::resource('dosen', DosenController::class)->except(['create', 'show']);
+    Route::resource('ruang', RuangSidangController::class);
+
 });
