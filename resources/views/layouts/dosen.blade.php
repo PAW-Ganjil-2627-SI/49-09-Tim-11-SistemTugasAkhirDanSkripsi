@@ -32,6 +32,7 @@
                 <a href="{{ route('topik.index') }}">Topik</a>
                 <a href="{{ route('mahasiswa.index') }}">Mahasiswa</a>
                 <a href="{{ route('dosen.index') }}" class="active">Dosen</a>
+                <a href="{{ route('ruang.index') }}">Ruang</a>
             </div>
         </div>
         <div class="card">

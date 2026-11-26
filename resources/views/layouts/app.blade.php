@@ -49,6 +49,7 @@
                     <a href="{{ route('topik.index') }}" class="nav-link {{ request()->routeIs('topik.*') ? 'active' : '' }}">Topik &amp; Minat</a>
                     <a href="{{ route('mahasiswa.index') }}" class="nav-link {{ request()->routeIs('mahasiswa.*') ? 'active' : '' }}">Data Mahasiswa</a>
                     <a href="{{ route('dosen.index') }}" class="nav-link {{ request()->routeIs('dosen.*') ? 'active' : '' }}">Dosen Pembimbing</a>
+                    <a href="{{ route('ruang.index') }}" class="nav-link {{ request()->routeIs('ruang.*') ? 'active' : '' }}">Ruang Sidang</a>
                 </nav>
                 @endauth
             </div>

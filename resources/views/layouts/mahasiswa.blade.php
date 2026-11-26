@@ -149,6 +149,7 @@
                 <a href="{{ route('topik.index') }}">Topik</a>
                 <a href="{{ route('mahasiswa.index') }}" class="active">Mahasiswa</a>
                 <a href="{{ route('dosen.index') }}">Dosen</a>
+                <a href="{{ route('ruang.index') }}">Ruang</a>
             </div>
         </div>
     </nav>
