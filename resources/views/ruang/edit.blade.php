@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Edit Ruang Sidang</title>
-  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+  <link rel="stylesheet" href="{{ asset('css/ruang.css') }}">
 </head>
 <body>
   <header class="navbar">
@@ -16,6 +16,13 @@
           <div class="brand-sub">Ruang & Fasilitas Sidang</div>
         </div>
       </div>
+
+      <nav class="nav-menu">
+        <a href="{{ route('topik.index') }}">Topik</a>
+        <a href="{{ route('mahasiswa.index') }}">Mahasiswa</a>
+        <a href="{{ route('dosen.index') }}">Dosen</a>
+        <a href="{{ route('ruang.index') }}" class="active">Ruang</a>
+      </nav>
     </div>
   </header>
 
